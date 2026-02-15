@@ -9,7 +9,7 @@ export default function Home() {
     await supabase.auth.signInWithOAuth({
       provider: "google",
       options: {
-        redirectTo: `${location.origin}/dashboard`,
+        redirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}/dashboard`,
       },
     });
   };
@@ -62,8 +62,12 @@ export default function Home() {
         </button>
 
         <div className="mt-16 sm:mt-20 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-5xl w-full">
-          {Features.map((feature,key) => (
-            <Feature key={key} title={feature.title} description={feature.description} />
+          {Features.map((feature, key) => (
+            <Feature
+              key={key}
+              title={feature.title}
+              description={feature.description}
+            />
           ))}
         </div>
       </main>
